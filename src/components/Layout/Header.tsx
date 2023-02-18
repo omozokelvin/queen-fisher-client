@@ -3,7 +3,7 @@ import classes from './Header.module.css';
 
 export default function Header() {
   return (
-    <section className={classes['nav-section']}>
+    <header className={classes['nav-section']}>
       <nav className="container">
         <a href="">
           <img src={Logo} alt="Queen fisher logo" />
@@ -30,6 +30,6 @@ export default function Header() {
           </a>
         </div>
       </nav>
-    </section>
+    </header>
   );
 }

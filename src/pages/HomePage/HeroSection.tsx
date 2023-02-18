@@ -9,7 +9,7 @@ export default function HeroSection() {
         <div className={classes['left-side']}>
           <h2>Make Healthy Life With Queenfisher</h2>
 
-          <p>
+          <p className="body-1">
             {`With Queenfisher, user's can generate meal timetables based on
           preferences such as diet type, health condition, age, budget,
           geography.`}

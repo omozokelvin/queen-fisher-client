@@ -4,8 +4,9 @@
   --orange-900: #772917;
   --main-primary-color: #34a853;
   --grey-50: #f9fafb;
-  --grey-600: #475467;
   --grey-100: #f2f4f7;
+  --grey-400: #98a2b3;
+  --grey-600: #475467;
   --warning-50: #fffaeb;
   --error-50: #fef3f2;
   --success-100: #ecfdf3;
@@ -41,4 +42,33 @@ body {
   justify-content: center;
   font-weight: 500;
   color: var(--orange-900);
+}
+
+input:focus-visible {
+  outline: unset;
+}
+
+button {
+  border: unset;
+  background-color: unset;
+  cursor: pointer;
+}
+
+/* Typography */
+.body-1 {
+  color: var(--main-text);
+  line-height: 140%;
+  letter-spacing: 0.15px;
+}
+.body-2 {
+  color: var(--main-text);
+  font-size: 0.875rem;
+  line-height: 20px;
+}
+
+.heading-2 {
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 140%;
+  letter-spacing: 0.25px;
 }

@@ -1,0 +1,22 @@
+.wrapper {
+  background-color: var(--grey-50);
+  position: relative;
+  padding-block: 80px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+}
+
+.left-side h2 {
+  color: var(--orange-900);
+  max-width: 501px;
+  margin-bottom: 24px;
+}
