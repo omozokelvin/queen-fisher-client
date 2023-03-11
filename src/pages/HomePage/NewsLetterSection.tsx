@@ -20,7 +20,7 @@ export default function NewsLetterSection() {
         }}
       >
         <h2
-          className="heading-2"
+          className="heading-1"
           style={{ color: 'white', marginBottom: '32px' }}
         >
           Subscribe on our newsletter
@@ -65,11 +65,7 @@ export default function NewsLetterSection() {
           >
             <img src={MailIcon} alt="mail icon" />
 
-            <div
-              style={{
-                width: '100%',
-              }}
-            >
+            <div>
               <label htmlFor="newsletter_email" hidden>
                 Subscribe to news letter
               </label>

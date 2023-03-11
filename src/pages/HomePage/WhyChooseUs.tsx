@@ -15,7 +15,7 @@ export default function WhyChooseUs() {
       }}
     >
       <h2
-        className="heading-2"
+        className="heading-1"
         style={{
           color: 'var(--orange-900)',
           marginBottom: '56px',
