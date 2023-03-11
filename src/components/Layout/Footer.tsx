@@ -2,7 +2,7 @@ import FacebookIcon from '../../../public/icons/facebook.svg';
 import GoogleIcon from '../../../public/icons/google.svg';
 import LinkedinIcon from '../../../public/icons/linkedin.svg';
 import TwitterIcon from '../../../public/icons/twitter.svg';
-import Logo from '../../../public/logos/logo.svg';
+import SiteLogo from '../SiteLogo';
 
 export default function Footer() {
   return (
@@ -21,9 +21,9 @@ export default function Footer() {
         }}
       >
         <div>
-          <a href="" style={{ marginBottom: '40px', display: 'inline-block' }}>
-            <img src={Logo} alt="Queen fisher logo" />
-          </a>
+          <div style={{ marginBottom: '40px', display: 'inline-block' }}>
+            <SiteLogo />
+          </div>
 
           <p
             style={{

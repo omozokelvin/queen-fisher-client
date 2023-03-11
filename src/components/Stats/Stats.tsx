@@ -17,7 +17,7 @@ export default function Stats(props: Props) {
 
   return (
     <div className={classes.wrapper}>
-      <h3 className="heading-2">{formatAsNumber(count)}+</h3>
+      <h3 className="heading-1">{formatAsNumber(count)}+</h3>
       <p className="body-1">{title}</p>
     </div>
   );

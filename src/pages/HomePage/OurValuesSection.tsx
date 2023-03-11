@@ -21,7 +21,7 @@ export default function OurValuesSection() {
 
       <div className={`container ${classes.content}`}>
         <div className={classes['left-side']}>
-          <h2 className="heading-2">Our Values that Would Help You</h2>
+          <h2 className="heading-1">Our Values that Would Help You</h2>
 
           <p
             className="body-1"

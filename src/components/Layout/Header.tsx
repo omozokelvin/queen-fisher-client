@@ -1,13 +1,11 @@
-import Logo from '../../../public/logos/logo.svg';
+import SiteLogo from '../SiteLogo';
 import classes from './Header.module.css';
 
 export default function Header() {
   return (
     <header className={classes['nav-section']}>
       <nav className="container">
-        <a href="">
-          <img src={Logo} alt="Queen fisher logo" />
-        </a>
+        <SiteLogo />
 
         <ul>
           <li>

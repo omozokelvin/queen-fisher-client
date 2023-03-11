@@ -12,6 +12,9 @@
   --success-100: #ecfdf3;
   --yellow-400: #fac515;
   --main-text: #101828;
+  --auth-bg: #e5e5e5;
+  --darker-gray: #012a4a;
+  --blue-600: #1570ef;
 }
 
 * {
@@ -66,9 +69,16 @@ button {
   line-height: 20px;
 }
 
-.heading-2 {
+.heading-1 {
   font-weight: 700;
   font-size: 2.5rem;
   line-height: 140%;
+  letter-spacing: 0.25px;
+}
+
+.heading-2 {
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 24px;
   letter-spacing: 0.25px;
 }

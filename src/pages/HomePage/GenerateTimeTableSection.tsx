@@ -8,7 +8,7 @@ export default function GenerateTimeTableSection() {
       <img src={Food2} alt="Bunch of food items" />
 
       <div className={classes['right-side']}>
-        <h2 className="heading-2">Generate Timetables With Ease</h2>
+        <h2 className="heading-1">Generate Timetables With Ease</h2>
 
         <p className="body-1">
           {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel commodo dolor. Vivamus eu nunc convallis, finibus arcu quis, ultrices purus.`}
