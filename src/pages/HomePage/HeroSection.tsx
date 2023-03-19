@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import LinkIcon from '../../../public/icons/link-icon.svg';
 import FoodTray from '../../../public/images/food-tray.svg';
 import classes from './HeroSection.module.css';
@@ -15,7 +16,7 @@ export default function HeroSection() {
           geography.`}
           </p>
 
-          <a href="" className="btn-primary">
+          <Link to="/auth/signup" className="btn-primary">
             Get Started
             <img
               src={LinkIcon}
@@ -23,7 +24,7 @@ export default function HeroSection() {
                 marginLeft: '11.33px',
               }}
             />
-          </a>
+          </Link>
         </div>
 
         <div className={classes['image-wrapper']}>

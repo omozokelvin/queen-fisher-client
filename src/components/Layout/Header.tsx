@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SiteLogo from '../SiteLogo';
 import classes from './Header.module.css';
 
@@ -22,10 +23,10 @@ export default function Header() {
         </ul>
 
         <div className={classes.action}>
-          <a href="">Login</a>
-          <a href="" className="btn-primary">
+          <Link to="/auth/login">Login</Link>
+          <Link to="/auth/signup" className="btn-primary">
             Get Started
-          </a>
+          </Link>
         </div>
       </nav>
     </header>

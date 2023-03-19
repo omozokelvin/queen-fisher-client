@@ -17,12 +17,15 @@
     "*.+(json|css|md)": "prettier --write --cache"
   },
   "dependencies": {
+    "formik": "^2.2.9",
+    "libphonenumber-js": "^1.10.24",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.9.0",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

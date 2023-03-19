@@ -1,3 +1,7 @@
+import { useFormik } from 'formik';
+import { isValidPhoneNumber } from 'libphonenumber-js/mobile';
+import { Link } from 'react-router-dom';
+import * as Yup from 'yup';
 import LockIcon from '../../../public/icons/lock.svg';
 import MailIcon from '../../../public/icons/mail-alt.svg';
 import PhoneIcon from '../../../public/icons/phone-alt.svg';
@@ -9,8 +13,49 @@ import {
   SiteLogo,
   TextField,
 } from '../../components';
+import { formatMobile } from '../../utils';
+
+const Schema = Yup.object().shape({
+  fullName: Yup.string().required('Full name is required'),
+  email: Yup.string()
+    .email('Please provide valid email')
+    .required('Email is required'),
+  phoneNumber: Yup.string()
+    .required('Phone number is required')
+    .test(
+      'isValidMobileNumber',
+      'Please provide a valid Nigerian mobile number',
+      (value) => isValidPhoneNumber(value, 'NG')
+    ),
+  password: Yup.string()
+    .required('Password is required')
+    .min(6, 'Password must be at least 6 characters'),
+  confirmPassword: Yup.string()
+    .required('Confirm password is required')
+    .oneOf([Yup.ref('password'), ''], 'Passwords must match'),
+});
 
 export default function SignupPage() {
+  const formik = useFormik({
+    initialValues: {
+      fullName: '',
+      email: '',
+      phoneNumber: '',
+      password: '',
+      confirmPassword: '',
+    },
+    validationSchema: Schema,
+    onSubmit: (values) => {
+      const payload = { ...values };
+
+      payload.phoneNumber = formatMobile(values.phoneNumber);
+
+      alert(JSON.stringify(payload, null, 2));
+    },
+  });
+
+  const { handleSubmit, getFieldProps, errors, touched } = formik;
+
   return (
     <AuthLayout>
       <SiteLogo />
@@ -34,49 +79,60 @@ export default function SignupPage() {
             rowGap: '16px',
             marginBottom: '40px',
           }}
+          onSubmit={handleSubmit}
         >
           <TextField
             label="Full Name"
             placeholder="Type your full name"
             id="fullName"
-            name="fullName"
             icon={UserIcon}
+            {...getFieldProps('fullName')}
+            error={Boolean(errors?.fullName && touched?.fullName)}
+            errorText={touched?.fullName && errors?.fullName}
           />
 
           <TextField
             label="Email"
             placeholder="Type your email"
             id="email"
-            name="email"
             icon={MailIcon}
             type="email"
+            {...getFieldProps('email')}
+            error={Boolean(errors?.email && touched?.email)}
+            errorText={touched?.email && errors?.email}
           />
 
           <TextField
             label="Phone Number"
             placeholder="Enter phone number"
             id="phone"
-            name="phone"
             icon={PhoneIcon}
             type="tel"
+            {...getFieldProps('phoneNumber')}
+            error={Boolean(errors?.phoneNumber && touched?.phoneNumber)}
+            errorText={touched?.phoneNumber && errors?.phoneNumber}
           />
 
           <TextField
             label="Password"
             placeholder="Enter your password"
             id="password"
-            name="password"
             icon={LockIcon}
             type="password"
+            {...getFieldProps('password')}
+            error={Boolean(errors?.password && touched?.password)}
+            errorText={touched?.password && errors?.password}
           />
 
           <TextField
             label="Confirm Password"
             placeholder="Confirm your password"
             id="confirmPassword"
-            name="confirmPassword"
             icon={LockIcon}
             type="password"
+            {...getFieldProps('confirmPassword')}
+            error={Boolean(errors?.confirmPassword && touched?.confirmPassword)}
+            errorText={touched?.confirmPassword && errors?.confirmPassword}
           />
 
           <hr
@@ -84,7 +140,7 @@ export default function SignupPage() {
               all: 'unset',
             }}
           />
-          <Button>Sign Up</Button>
+          <Button type="submit">Sign Up</Button>
         </form>
 
         <p
@@ -95,15 +151,15 @@ export default function SignupPage() {
           }}
         >
           Already have an account{' '}
-          <a
-            href="#"
+          <Link
+            to="/auth/login"
             style={{
               color: 'var(--orange-900)',
               fontWeight: 600,
             }}
           >
             Login
-          </a>
+          </Link>
         </p>
       </AuthCard>
     </AuthLayout>
