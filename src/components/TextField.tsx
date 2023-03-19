@@ -66,7 +66,7 @@ export default function TextField(props: Props) {
           />
         </div>
       </div>
-      {errorText.trim().length > 0 && (
+      {!!errorText && (
         <span
           style={{
             color: 'red',
