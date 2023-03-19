@@ -1,11 +1,11 @@
-import { type ReactNode } from 'react';
+import { type ButtonHTMLAttributes, type ReactNode } from 'react';
 
-interface Props {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
 export default function Button(props: Props) {
-  const { children } = props;
+  const { children, ...buttonProps } = props;
 
   return (
     <button
@@ -19,6 +19,7 @@ export default function Button(props: Props) {
         fontWeight: 600,
         fontSize: '0.875rem',
       }}
+      {...buttonProps}
     >
       {children}
     </button>

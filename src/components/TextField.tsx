@@ -1,12 +1,20 @@
-import { type HTMLProps } from 'react';
+import { type InputHTMLAttributes } from 'react';
 
-interface Props extends HTMLProps<HTMLInputElement> {
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   icon: string;
+  error?: boolean;
+  errorText?: string | boolean;
 }
 
 export default function TextField(props: Props) {
-  const { label, icon, ...theRestInputAttributes } = props;
+  const {
+    label,
+    icon,
+    error = false,
+    errorText = '',
+    ...theRestInputAttributes
+  } = props;
 
   const id = theRestInputAttributes?.id ?? '';
 
@@ -19,7 +27,7 @@ export default function TextField(props: Props) {
       <label
         htmlFor={id}
         style={{
-          color: 'var(--darker-gray)',
+          color: error ? 'red' : 'var(--darker-gray)',
           fontWeight: 600,
           fontSize: '0.875rem',
           marginBottom: '8px',
@@ -34,7 +42,7 @@ export default function TextField(props: Props) {
           borderRadius: '6px',
           borderWidth: '1px',
           borderStyle: 'solid',
-          borderColor: 'var(--gray-400)',
+          borderColor: error ? 'red' : 'var(--gray-400)',
           height: '44px',
           display: 'flex',
           alignItems: 'center',
@@ -49,14 +57,25 @@ export default function TextField(props: Props) {
             style={{
               fontSize: '0.875rem',
               lineHeight: '20px',
-              color: 'var(--gray-600)',
+              color: error ? 'red' : 'var(--gray-600)',
               width: '100%',
               border: 'unset',
             }}
+            className={error ? 'error-input' : ''}
             {...theRestInputAttributes}
           />
         </div>
       </div>
+      {!!errorText && (
+        <span
+          style={{
+            color: 'red',
+            fontSize: '0.875rem',
+          }}
+        >
+          {errorText}
+        </span>
+      )}
     </fieldset>
   );
 }

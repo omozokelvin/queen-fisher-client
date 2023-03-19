@@ -1,3 +1,6 @@
+import { useFormik } from 'formik';
+import { Link } from 'react-router-dom';
+import * as Yup from 'yup';
 import LockIcon from '../../../public/icons/lock.svg';
 import MailIcon from '../../../public/icons/mail-alt.svg';
 import {
@@ -8,7 +11,31 @@ import {
   TextField,
 } from '../../components';
 
+const Schema = Yup.object().shape({
+  email: Yup.string()
+    .email('Please provide valid email')
+    .required('Email is required'),
+  password: Yup.string()
+    .required('Password is required')
+    .min(6, 'Password must be at least 6 characters'),
+});
+
 export default function LoginPage() {
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: Schema,
+    onSubmit: (values) => {
+      const payload = { ...values };
+
+      alert(JSON.stringify(payload, null, 2));
+    },
+  });
+
+  const { handleSubmit, getFieldProps, errors, touched } = formik;
+
   return (
     <AuthLayout>
       <SiteLogo />
@@ -32,23 +59,28 @@ export default function LoginPage() {
             rowGap: '16px',
             marginBottom: '40px',
           }}
+          onSubmit={handleSubmit}
         >
           <TextField
             label="Email"
             placeholder="Type your email"
             id="email"
-            name="email"
             icon={MailIcon}
             type="email"
+            {...getFieldProps('email')}
+            error={Boolean(errors?.email && touched?.email)}
+            errorText={touched?.email && errors?.email}
           />
 
           <TextField
             label="Password"
             placeholder="Enter your password"
             id="password"
-            name="password"
             icon={LockIcon}
             type="password"
+            {...getFieldProps('password')}
+            error={Boolean(errors?.password && touched?.password)}
+            errorText={touched?.password && errors?.password}
           />
           <a
             href="#"
@@ -66,7 +98,7 @@ export default function LoginPage() {
               all: 'unset',
             }}
           />
-          <Button>Login</Button>
+          <Button type="submit">Login</Button>
         </form>
 
         <p
@@ -77,15 +109,15 @@ export default function LoginPage() {
           }}
         >
           Don’t have an account?{' '}
-          <a
-            href="#"
+          <Link
+            to="/auth/signup"
             style={{
               color: 'var(--orange-900)',
               fontWeight: 600,
             }}
           >
             Create account
-          </a>
+          </Link>
         </p>
       </AuthCard>
     </AuthLayout>
